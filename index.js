@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -14,8 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// "public" folder ki files (jaise widget.js) directly URL se accessible hongi
-// jaise: http://localhost:5000/widget.js
+// Public folder
 app.use(express.static("public"));
 
 // ===== Routes =====
@@ -24,7 +24,7 @@ app.use("/api/business", businessRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/import", importRoutes);
 
-// Test route
+// ===== Test route =====
 app.get("/", (req, res) => {
   res.send("AIHelper backend is running!");
 });
@@ -35,8 +35,5 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// ===== Start Server =====
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server chal raha hai on port ${PORT}`);
-});
+// ===== Export app for Vercel =====
+module.exports = app;
