@@ -6,6 +6,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const businessRoutes = require("./routes/businessRoutes");
 const chatRoutes = require("./routes/chatRoutes");
+const importRoutes = require("./routes/importRoutes");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/business", businessRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/import", importRoutes);
 
 // ===== Export app for Vercel =====
 
