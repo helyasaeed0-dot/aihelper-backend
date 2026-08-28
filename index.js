@@ -3,6 +3,9 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
+const authRoutes = require("./routes/authRoutes");
+const businessRoutes = require("./routes/businessRoutes");
+
 const app = express();
 
 // ===== Middleware =====
@@ -13,6 +16,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("AIHelper backend is running!");
 });
+
+// ===== Routes =====
+app.use("/api/auth", authRoutes);
+app.use("/api/business", businessRoutes);
 
 // ===== Export app for Vercel =====
 module.exports = app;
